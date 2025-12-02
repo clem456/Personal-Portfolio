@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Stylesheets/basic.css">
+    <link rel="stylesheet" href="Stylesheets/projectpage.css">
+    <link rel="stylesheet" href="Stylesheets/homepage.css">
+    <link rel="stylesheet" href="Stylesheets/slideshow.css">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
+
+    <script type="module" src="Scripts/tools.js"></script>
+    <script type="module" src="Scripts/main.js"></script>
+    <script type="module" src="Scripts/slideshow.js"></script>
+
+    <meta charset="UTF-8">
+    <name name="description" content="Clement Malaka, Game Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clement Malaka Portfolio | Photoshop Projects</title>
+</head>
+<body>
+    <header id="baseheader">
+        <nav>
+            <div class="logo">
+                <img alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="segment">
+        <div class="content" style="align-items: center">
+            <h2 class="content-title">Photoshop Projects</h2>
+
+            <h3 class="description">
+                I’m a game developer with that also like to do some graphic design for fun. 
+                Specializing in Roblox games I try to design thumbnails and icons that catches 
+                the attention of players among all other games they might pass by.
+                To create these thumbnails and icons I make use of Adobe Photoshop and Blender.
+            </h3>
+
+            <div class="slideshow-container" height="500px">
+                <!-- Full-width images with number and caption text -->
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Thumbnail 1.jpg">
+                    </div>
+                    <div class="text">Image 1</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Thumbnail 2.png">
+                    </div>
+                    <div class="text">Image 2</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Thumbnail 3.jpg">
+                    </div>
+                    <div class="text">Image 3</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Thumbnail 4.png">
+                    </div>
+                    <div class="text">Image 4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+    </section>
+
+    <section class="segment">
+        <div class="content" style="align-items: center">
+            <h2 class="content-title">Logos</h2>
+
+            <h3 class="description">
+                I use Adobe Photoshop to design thumbnails, logos and in game icons 
+                for mostly my Roblox projects. I try to create the most engaging and clickable designs,
+                that will catch the player's attention.
+            </h3>
+
+            <div class="slideshow-container" height="500px">
+                <!-- Full-width images with number and caption text -->
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Icons/Aura Inventory.png">
+                    </div>
+                    <div class="text">Image 1</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Icons/Coin Icon.png">
+                    </div>
+                    <div class="text">Image 2</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Icons/Luck token 1.png">
+                    </div>
+                    <div class="text">Image 3</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Icons/Mega Luck 1.png">
+                    </div>
+                    <div class="text">Image 4</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Icons/Potion Inventory 3.png">
+                    </div>
+                    <div class="text">Image 5</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+    </section>
+
+    <a id="tooltip"><a>
+
+    <footer>
+        <div class="footer-container">
+            <p class="footer-text">Made by Clement Malaka</p>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            for (const slide of document.getElementsByClassName("slideshow-container")) {
+                SetSlider(slide)
+            }
+        };
+    </script>
+</body>
+
+</html>

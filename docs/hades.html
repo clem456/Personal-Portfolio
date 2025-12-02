@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Stylesheets/basic.css">
+    <link rel="stylesheet" href="Stylesheets/projectpage.css">
+    <link rel="stylesheet" href="Stylesheets/homepage.css">
+    <link rel="stylesheet" href="Stylesheets/slideshow.css">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-lua.min.js"></script>
+
+    <script type="module" src="Scripts/tools.js"></script>
+    <script type="module" src="Scripts/main.js"></script>
+    <script type="module" src="Scripts/slideshow.js"></script>
+
+    <meta charset="UTF-8">
+    <name name="description" content="Clement Malaka, Game Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clement Malaka Portfolio | Hades Recration</title>
+</head>
+<body>
+    <header id="baseheader">
+        <nav>
+            <div class="logo">
+                <img alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="segment">
+        <div class="content" style="align-items: center">
+            <h2 class="content-title">Hades Recreation</h2>
+
+            <a class="play" href="https://clicliboi.itch.io/hades-remake">PLAY</a>
+
+            <h3 class="description">
+                The hades recreation was a group project I worked on with for school with some classmates.
+                During creating this project I was responsible for the player's movement and combat system.
+                The game was made in Unity and coded with C#. 
+                For a more indepth view of the game you can visit the github page 
+                <a style="color:rgb(85, 164, 255)" href="https://github.com/seppvanderwal/BO-M6/blob/develop/">HERE<a>.
+            </h3>
+
+            <div class="slideshow-container" height="500px">
+                <!-- Full-width images with number and caption text -->
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Hades thumbnail.png">
+                    </div>
+                    <div class="text">Game Thumbnail</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+    </section>
+
+    <section class="segment">
+        <div class="content" style="align-items: center">
+            <h2 class="content-title">Attack Combo</h2>
+
+            <h3 class="description">
+                Here you can see the attack combo I have created for the player.
+            </h3>
+
+            <div class="slideshow-container" height="500px">
+                <!-- Full-width images with number and caption text -->
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Hades Attack Combo.gif">
+                    </div>
+                    <div class="text">Combo display</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section class="segment">
+        <div class="content" style="align-items: center">
+            <h2 class="content-title">Dash</h2>
+
+            <h3 class="description">
+                I have created the dash, based on the snippet we got for our assignment.
+                The dash can be used in both idle and walking state. When the player presses shift.
+                In the code displayed in the slideshow you can see that I used a coroutine to handle the dash's cooldown.
+                I made the cooldown speed and dash time serializable so it can be easily adjusted in the Unity editor.
+            </h3>
+
+            <div class="slideshow-container" height="500px">
+                <!-- Full-width images with number and caption text -->
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <img height="auto" src="Images/Projects/Hades Dash.gif">
+                    </div>
+                    <div class="text">Dash display</div>
+                </div>
+
+                <div class="mySlides">
+                    <div class="slide-container">
+                        <pre class="code-block"><code class="language-javascript">using System.Collections;
+using UnityEngine;
+
+public class Dash : MonoBehaviour
+{
+    public float dashSpeed;
+    public float dashTime;
+    public float dashingCooldown = 1f;
+
+    bool inCooldown = false;
+
+    public AudioSource dashAudioSource;
+
+    private CharacterController Controller;
+
+    private State UserStates;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        UserStates = GetComponent<State>();
+        Controller = GetComponent<CharacterController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            string state = UserStates.GetState();
+
+            if (state == "Idle" || state == "Walking")
+            {
+                //dashAudioSource.Play();
+                StartCoroutine(Fire());
+            }
+        }
+    }
+
+    IEnumerator Fire()
+    {
+        if (!inCooldown)
+        {
+            inCooldown = true;
+
+            float startTime = Time.time;
+
+            UserStates.ChangeState("Dashing");
+
+            while (Time.time < startTime + dashTime)
+            {
+                // Calculate movement during the dash directly in this script
+                Vector3 dashDirection = transform.forward;
+                Controller.Move(dashDirection * dashSpeed * Time.deltaTime);
+
+                yield return null;
+            }
+
+            UserStates.ChangeState("Idle");
+
+            // Wait for the dash cooldown and enable dashing again
+            yield return new WaitForSeconds(dashingCooldown);
+
+            inCooldown = false;
+
+            yield break;
+        }
+    }
+}
+                       </code></pre>
+                    </div>
+                    <div class="text">Dash code</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a id="tooltip"><a>
+
+    <footer>
+        <div class="footer-container">
+            <p class="footer-text">Made by Clement Malaka</p>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            for (const slide of document.getElementsByClassName("slideshow-container")) {
+                SetSlider(slide)
+            }
+        };
+    </script>
+</body>
+
+</html>
